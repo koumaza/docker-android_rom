@@ -13,7 +13,7 @@ ARG   apt_addi_packages='bc jq lib32readline-gplv2-dev lib32z1-dev lib32z-dev li
 ARG   apt_xenial_packages='libesd0-dev'
 RUN   apt update ;\
       apt full-upgrade ;\
-      apt install -y           $apt_user_packages $apt_requ_packages $apt_addi_packages
+      apt install -y           $apt_user_packages $apt_requ_packages $apt_addi_packages ;\
       apt install -y -t xenial $apt_xenial_packages
 
 # Bin

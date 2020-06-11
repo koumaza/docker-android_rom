@@ -15,18 +15,18 @@ RUN   apt_user_packages='colordiff fish git neovim vim sudo' ;\
       apt full-upgrade ;\
       apt install -y           $apt_user_packages $apt_requ_packages $apt_addi_packages ;\
       apt_xenial_packages='libesd0-dev' ;\
-      apt install -y -t xenial $apt_xenial_packages ;\
+      apt install -y -t xenial $apt_xenial_packages
       
-SHELL ["/usr/bin/bash","-c"]
+SHELL ["/usr/bin/fish","-c"]
 
 # Bin
 
-RUN   bash -c 'mkdir /opt/bin ;\
+RUN            mkdir /opt/bin ;\
                curl https://storage.googleapis.com/git-repo-downloads/repo > /opt/bin/repo ;\
                gpg --recv-key 8BB9AD793E8E6153AF0F9A4416530D5E920F5C65 ;\
                curl https://storage.googleapis.com/git-repo-downloads/repo.asc | gpg --verify - /opt/bin/repo ;\
                chmod a+x /opt/bin/repo ;\
-               ln -s /opt/bin/repo /usr/bin/repo'
+               ln -s /opt/bin/repo /usr/bin/repo
       
 # User
 

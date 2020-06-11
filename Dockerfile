@@ -12,7 +12,7 @@ RUN   export apt_user_packages="colordiff fish git neovim vim sudo" ;\
       export apt_addi_packages="bc jq lib32readline-dev lib32z1-dev lib32z-dev libc6-dev libc6-dev-i386 libgl1-mesa-dev lib32ncurses-dev libsdl1.2-dev libwxgtk3.0-gtk3-0v5 libx11-dev libxml2 lzop maven ncftp openjdk-8-jre p7zip-full pngcrush python-pip-whl screen squashfs-tools tmux unzip w3m x11proto-core-dev zstd" ;\
       export apt_xenial_packages="libesd0-dev" ;\
       \
-      echo 'deb http://archive.ubuntu.com/ubuntu/ xenial main restricted universe' >> /etc/apt/sources.list ;
+      echo 'deb http://archive.ubuntu.com/ubuntu/ xenial main restricted universe' >> /etc/apt/sources.list ;\
       apt update ;\
       apt full-upgrade ;\
       apt install -y \

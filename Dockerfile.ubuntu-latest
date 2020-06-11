@@ -4,7 +4,7 @@ FROM  ubuntu:$VERSION
 USER  root
 SHELL ["bash","-c"]
 ARG   VERSION
-RUN   echo -e 'Version': $VERSION'\n''Build date: '$(date) > /etc/image_version
+RUN   echo -e 'Version': Ubuntu:$VERSION'\n''Build date: '$(date) > /etc/image_version
 
 # Apt
 

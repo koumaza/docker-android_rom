@@ -8,7 +8,7 @@ RUN   echo -e 'Version': $VERSION'\n''Build date: '$(date) > /etc/image_version
 # Apt
 
 RUN   export apt_user_packages="colordiff fish git neovim vim sudo" ;\
-      export apt_requ_packages="openjdk-8-jdk bison build-essential curl flex gcc-multilib git-core g++-multilib gnupg gperf lib32ncurses5-dev lib32z-dev libc6-dev-i386 libgl1-mesa-dev libx11-dev libxml2-utils unzip x11proto-core-dev xsltproc zip zlib1g-dev" ;\
+      export apt_requ_packages="openjdk-8-jdk bison build-essential curl flex gcc-multilib git-core g++-multilib gnupg gperf lib32z-dev libc6-dev-i386 libgl1-mesa-dev libx11-dev libxml2-utils unzip x11proto-core-dev xsltproc zip zlib1g-dev" ;\
       export apt_addi_packages="bc jq lib32readline-dev lib32z1-dev lib32z-dev libc6-dev libc6-dev-i386 libgl1-mesa-dev lib32ncurses-dev libsdl1.2-dev libwxgtk3.0-gtk3-0v5 libx11-dev libxml2 lzop maven ncftp openjdk-8-jre p7zip-full pngcrush python-pip-whl screen squashfs-tools tmux unzip w3m x11proto-core-dev zstd" ;\
       export apt_xenial_packages="libesd0-dev" ;\
       \
@@ -17,7 +17,7 @@ RUN   export apt_user_packages="colordiff fish git neovim vim sudo" ;\
       apt full-upgrade ;\
       apt install -y \
       colordiff fish git neovim vim sudo \
-      openjdk-8-jdk bison build-essential curl flex gcc-multilib git-core g++-multilib gnupg gperf lib32ncurses5-dev lib32z-dev libc6-dev-i386 libgl1-mesa-dev libx11-dev libxml2-utils unzip x11proto-core-dev xsltproc zip zlib1g-dev \
+      openjdk-8-jdk bison build-essential curl flex gcc-multilib git-core g++-multilib gnupg gperf lib32z-dev libc6-dev-i386 libgl1-mesa-dev libx11-dev libxml2-utils unzip x11proto-core-dev xsltproc zip zlib1g-dev \
       bc jq lib32readline-dev lib32z1-dev lib32z-dev libc6-dev libc6-dev-i386 libgl1-mesa-dev lib32ncurses-dev libsdl1.2-dev libwxgtk3.0-gtk3-0v5 libx11-dev libxml2 lzop maven ncftp openjdk-8-jre p7zip-full pngcrush python-pip-whl screen squashfs-tools tmux unzip w3m x11proto-core-dev zstd ;\
       apt install -y -t xenial libesd0-dev
       

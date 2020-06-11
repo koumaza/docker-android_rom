@@ -17,16 +17,16 @@ RUN   echo 'deb http://archive.ubuntu.com/ubuntu/ xenial main restricted univers
       apt install -y           $apt_user_packages $apt_requ_packages $apt_addi_packages ;\
       apt install -y -t xenial $apt_xenial_packages
       
-SHELL ["/usr/bin/fish","-c"]
+SHELL ["/usr/bin/bash","-c"]
 
 # Bin
 
-RUN   mkdir /opt/bin ;\
-      curl https://storage.googleapis.com/git-repo-downloads/repo > /opt/bin/repo ;\
-      chmod a+x /opt/bin/repo ;\
-      ln -s /opt/bin/repo /usr/bin/repo ;\
-      gpg --recv-key 8BB9AD793E8E6153AF0F9A4416530D5E920F5C65 ;\
-      curl https://storage.googleapis.com/git-repo-downloads/repo.asc | gpg --verify - /opt/bin/repo
+RUN   bash -c 'mkdir /opt/bin ;\
+               curl https://storage.googleapis.com/git-repo-downloads/repo > /opt/bin/repo ;\
+               gpg --recv-key 8BB9AD793E8E6153AF0F9A4416530D5E920F5C65 ;\
+               curl https://storage.googleapis.com/git-repo-downloads/repo.asc | gpg --verify - /opt/bin/repo ;\
+               chmod a+x /opt/bin/repo ;\
+               ln -s /opt/bin/repo /usr/bin/repo'
       
 # User
 

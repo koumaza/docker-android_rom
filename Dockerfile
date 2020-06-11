@@ -16,6 +16,8 @@ RUN   echo 'deb http://archive.ubuntu.com/ubuntu/ xenial main restricted univers
       apt full-upgrade ;\
       apt install -y           $apt_user_packages $apt_requ_packages $apt_addi_packages ;\
       apt install -y -t xenial $apt_xenial_packages
+      
+SHELL ["/usr/bin/fish","-c"]
 
 # Bin
 

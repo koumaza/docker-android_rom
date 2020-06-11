@@ -40,4 +40,6 @@ WORKDIR /android-build
 COPY    document/ /android-build/
 ## Copy dot files
 COPY    script/*  /android-build/
+RUN     mkdir /android-build/tunnel/
+VOLUME  ["/android-build/tunnel/"]
 CMD     ["fish --login"]

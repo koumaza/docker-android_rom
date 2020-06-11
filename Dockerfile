@@ -20,7 +20,7 @@ RUN   echo 'deb http://archive.ubuntu.com/ubuntu/ xenial main restricted univers
       apt install -y           $apt_user_packages $apt_requ_packages $apt_addi_packages
 
       ARG   apt_xenial_packages='libesd0-dev'
-run   apt install -y -t xenial $apt_xenial_packages
+RUN   apt install -y -t xenial $apt_xenial_packages
       
 SHELL ["/usr/bin/bash","-c"]
 

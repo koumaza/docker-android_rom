@@ -13,9 +13,9 @@ RUN   export apt_user_packages='colordiff fish git neovim vim sudo' ;\
       echo 'deb http://archive.ubuntu.com/ubuntu/ xenial main restricted universe' >> /etc/apt/sources.list ;\
       apt update ;\
       apt full-upgrade ;\
-      apt install -y           $apt_user_packages $apt_requ_packages $apt_addi_packages ;\
+      apt install -y           "$apt_user_packages" "$apt_requ_packages" "$apt_addi_packages" ;\
       export apt_xenial_packages='libesd0-dev' ;\
-      apt install -y -t xenial $apt_xenial_packages
+      apt install -y -t xenial "$apt_xenial_packages"
       
 SHELL ["/usr/bin/fish","-c"]
 

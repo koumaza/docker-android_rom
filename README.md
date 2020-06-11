@@ -1,5 +1,6 @@
 ![Docker Automated build](https://img.shields.io/docker/automated/koumaza/android_rom?style=for-the-badge)
 ![Docker Pulls](https://img.shields.io/docker/pulls/koumaza/android_rom?style=for-the-badge)
+![Docker Build Status](https://img.shields.io/docker/build/koumaza/android_rom?style=for-the-badge)
 ![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/koumaza/android_rom?style=for-the-badge)
 ![Docker Stars](https://img.shields.io/docker/stars/koumaza/android_rom?style=for-the-badge)
 

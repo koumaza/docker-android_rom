@@ -7,6 +7,7 @@ ARG   VERSION
 RUN   echo -e 'Version': Ubuntu:$VERSION'\n''Build date: '$(date) > /etc/image_version
 
 # Apt
+
 ENV   DEBIAN_FRONTEND noninteractive
 ENV   apt_user_packages='colordiff fish git neovim vim sudo' \
       apt_requ_packages='openjdk-8-jdk bison build-essential curl flex gcc-multilib git-core g++-multilib gnupg gperf lib32z-dev libc6-dev-i386 libgl1-mesa-dev libx11-dev libxml2-utils unzip x11proto-core-dev xsltproc zip zlib1g-dev' \
@@ -17,18 +18,20 @@ RUN   echo 'deb http://archive.ubuntu.com/ubuntu/ xenial main restricted univers
       apt update ;\
       apt full-upgrade ;\
       apt install -y           $(echo "${apt_user_packages} ${apt_requ_packages} ${apt_addi_packages}"|tr ' ' ' ') ;\
-      apt install -y -t xenial $(echo "${apt_xenial_packages}"|tr ' ' ' ')
+      apt install -y -t xenial $(echo "${apt_xenial_packages}"|tr ' ' ' ') ;\
+      apt clean ;\
+      rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
       
 SHELL ["/usr/bin/fish","-c"]
 
 # Bin
 
-RUN            mkdir /opt/bin ;\
-               curl https://storage.googleapis.com/git-repo-downloads/repo > /opt/bin/repo ;\
-               gpg --recv-key 8BB9AD793E8E6153AF0F9A4416530D5E920F5C65 ;\
-               curl https://storage.googleapis.com/git-repo-downloads/repo.asc | gpg --verify - /opt/bin/repo ;\
-               chmod a+x /opt/bin/repo ;\
-               ln -s /opt/bin/repo /usr/bin/repo
+RUN   mkdir /opt/bin ;\
+      curl https://storage.googleapis.com/git-repo-downloads/repo > /opt/bin/repo ;\
+      gpg --recv-key 8BB9AD793E8E6153AF0F9A4416530D5E920F5C65 ;\
+      curl https://storage.googleapis.com/git-repo-downloads/repo.asc | gpg --verify - /opt/bin/repo ;\
+      chmod a+x /opt/bin/repo ;\
+      ln -s /opt/bin/repo /usr/bin/repo
       
 # User
 
@@ -38,6 +41,7 @@ RUN   useradd anbuilder -md /android-build/ ;\
       chpasswd < /android-build/password-info
       
 # Login
+
 USER    anbuilder
 WORKDIR /android-build
 ## Copy document
@@ -46,4 +50,4 @@ COPY    document/ /android-build/
 COPY    script/*  /android-build/
 RUN     mkdir /android-build/tunnel/
 VOLUME  ["/android-build/tunnel/"]
-CMD     ["fish --login"]
+CMD     ["fish","--login"]

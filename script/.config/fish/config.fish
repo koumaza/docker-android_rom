@@ -6,3 +6,7 @@ set -gx CC "ccache gcc"
 alias CC="ccache gcc"
 alias gcc="ccache gcc"
 alias g++="ccache g++"
+function ssh-automate
+        eval (ssh-agent -c)
+        ssh-add ~/.ssh/id_ed25519
+end

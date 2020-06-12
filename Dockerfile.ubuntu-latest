@@ -4,7 +4,7 @@ FROM  ubuntu:$VERSION
 USER  root
 SHELL ["bash","-c"]
 ARG   VERSION
-RUN   echo -e 'Version': Ubuntu:$VERSION'\n''Build date: '$(date) > /etc/image_version
+RUN   echo -e 'Version': ubuntu:$VERSION'\n''Build date: '$(date) > /etc/image_version
 
 # Apt
 
@@ -15,6 +15,8 @@ ENV   apt_user_packages='colordiff fish git neovim vim sudo' \
       apt_xenial_packages='libesd0-dev'
       
 RUN   echo 'deb http://archive.ubuntu.com/ubuntu/ xenial main restricted universe' >> /etc/apt/sources.list ;\
+      curl mirrors.ubuntu.com/mirrors.txt & ;\
+      sed -i -e 's%http://[^ ]\+%mirror://mirrors.ubuntu.com/mirrors.txt%g' /etc/apt/sources.list ;\
       apt update ;\
       apt full-upgrade ;\
       apt install -y           $(echo "${apt_user_packages} ${apt_requ_packages} ${apt_addi_packages}"|tr ' ' ' ') ;\

@@ -36,9 +36,8 @@ RUN   mkdir /opt/bin ;\
 # User
 
 RUN   useradd anbuilder -md /android-build/ ;\
-      echo 'anbuilder ALL=NOPASSWD: ALL' >> /etc/sudoers ;\
-      echo 'anbuilder:tin' > /android-build/password-info ;\
-      chpasswd < /android-build/password-info
+      echo    'anbuilder ALL=NOPASSWD: ALL' >> /etc/sudoers ;\
+      echo -e 'The password has not been set yet'\n'You can change it by running "sudo" command' > /android-build/password-info
       
 # Login
 

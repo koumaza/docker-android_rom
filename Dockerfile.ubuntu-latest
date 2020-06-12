@@ -39,7 +39,9 @@ RUN   mkdir -p /opt/bin||true ;\
 # User
 
 RUN   useradd anbuilder -md /android-build/ ;\
-      echo    'anbuilder ALL=NOPASSWD: ALL' >> /etc/sudoers
+      echo    'anbuilder ALL=NOPASSWD: ALL' >> /etc/sudoers ;\
+      echo    'anbuilder:tin' > /android-build/password-info ;\
+      chpasswd < /android-build/password-info
       
 # Login
 
@@ -47,7 +49,7 @@ USER    anbuilder
 WORKDIR /android-build
 ## Copy document
 COPY    document/ /android-build/
-RUN     echo -e 'The password has not been set yet'\n'You can change it by running "sudo" command' > /android-build/password-info
+RUN     echo -e \n'The root user password has not been set yet'\n'Use "sudo" command to set it' >> /android-build/password-info
 ## Copy dot files
 COPY    script/*  /android-build/
 RUN     mkdir /android-build/tunnel/

@@ -15,7 +15,7 @@ ENV   apt_user_packages='colordiff fish git neovim vim sudo' \
       apt_xenial_packages='libesd0-dev'
       
 RUN   echo 'deb http://archive.ubuntu.com/ubuntu/ xenial main restricted universe' >> /etc/apt/sources.list ;\
-      curl mirrors.ubuntu.com/mirrors.txt & ;\
+      curl mirrors.ubuntu.com/mirrors.txt ;\
       sed -i -e 's%http://[^ ]\+%mirror://mirrors.ubuntu.com/mirrors.txt%g' /etc/apt/sources.list ;\
       apt update ;\
       apt full-upgrade ;\
@@ -24,7 +24,7 @@ RUN   echo 'deb http://archive.ubuntu.com/ubuntu/ xenial main restricted univers
       apt clean ;\
       rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* ;\
       mkdir -p /opt/bin||true ;\
-      ln -s /usr/bin/python3 /opt/bin/python # Use Python3
+      ln -s /usr/bin/python3 /opt/bin/python
       
 SHELL ["/usr/bin/fish","-c"]
 

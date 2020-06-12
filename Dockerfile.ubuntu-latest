@@ -15,7 +15,7 @@ ENV   apt_user_packages='colordiff fish git neovim vim sudo' \
       apt_xenial_packages='libesd0-dev'
       
 RUN   echo 'deb http://archive.ubuntu.com/ubuntu/ xenial main restricted universe' >> /etc/apt/sources.list ;\
-      sed -i -e 's%http://[^ ]\+%mirror://mirrors.ubuntu.com/mirrors.txt%g' /etc/apt/sources.list ;\
+      sed -i.bak -r 's!(deb|deb-src) \S+!\1 mirror+http://mirrors.ubuntu.com/mirrors.txt!' /etc/apt/sources.list ;\
       apt update ;\
       apt full-upgrade ;\
       apt install -y           $(echo "${apt_user_packages} ${apt_requ_packages} ${apt_addi_packages}"|tr ' ' ' ') ;\

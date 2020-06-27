@@ -18,8 +18,8 @@ RUN   echo 'deb http://archive.ubuntu.com/ubuntu/ xenial main restricted univers
       sed -i.bak -r 's!(deb|deb-src) \S+!\1 mirror+http://mirrors.ubuntu.com/mirrors.txt!' /etc/apt/sources.list ;\
       apt update -qq ;\
       apt full-upgrade -qq ;\
-      apt install -qq -y           $(echo "${apt_user_packages} ${apt_requ_packages} ${apt_addi_packages}"|tr ' ' ' ') ;\
-      apt install -qq -y -t xenial $(echo "${apt_xenial_packages}"|tr ' ' ' ') ;\
+      apt install -qq           $(echo "${apt_user_packages} ${apt_requ_packages} ${apt_addi_packages}"|tr ' ' ' ') ;\
+      apt install -qq -t xenial $(echo "${apt_xenial_packages}"|tr ' ' ' ') ;\
       apt clean -qq ;\
       rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* ;\
       mkdir -p /opt/bin||true ;\
@@ -42,6 +42,7 @@ RUN   useradd anbuilder -md /android-build ;\
       echo    'anbuilder ALL=NOPASSWD: ALL' >> /etc/sudoers ;\
       echo    'anbuilder:tin' > /android-build/password-info ;\
       chpasswd < /android-build/password-info
+      echo -e \n'The root user password has not been set yet'\n'Use "sudo" command to set it' >> /android-build/password-info
       
 # Login
 
@@ -49,7 +50,6 @@ USER    anbuilder
 WORKDIR /android-build
 ## Copy document
 COPY    document/ /android-build/
-RUN     echo -e \n'The root user password has not been set yet'\n'Use "sudo" command to set it' >> /android-build/password-info
 ## Copy dot files
 COPY    script/*  /android-build/
 RUN     mkdir /android-build/tunnel/

@@ -32,9 +32,7 @@ SHELL ["/usr/bin/fish","-c"]
 
 RUN   mkdir -p /opt/bin||true &&\
       curl https://storage.googleapis.com/git-repo-downloads/repo > /opt/bin/repo &&\
-      gpg --recv-key 8BB9AD793E8E6153AF0F9A4416530D5E920F5C65 &&\
-      curl https://storage.googleapis.com/git-repo-downloads/repo.asc | gpg --verify - /opt/bin/repo &&\
-      chmod a+x /opt/bin/repo
+      chmod a+rx /opt/bin/repo
       
 # User
 

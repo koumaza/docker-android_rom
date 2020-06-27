@@ -16,11 +16,11 @@ ENV   apt_user_packages='colordiff fish git neovim vim sudo' \
       
 RUN   echo 'deb http://archive.ubuntu.com/ubuntu/ xenial main restricted universe' >> /etc/apt/sources.list ;\
       sed -i.bak -r 's!(deb|deb-src) \S+!\1 mirror+http://mirrors.ubuntu.com/mirrors.txt!' /etc/apt/sources.list ;\
-      apt update ;\
-      apt full-upgrade ;\
-      apt install -y           $(echo "${apt_user_packages} ${apt_requ_packages} ${apt_addi_packages}"|tr ' ' ' ') ;\
-      apt install -y -t xenial $(echo "${apt_xenial_packages}"|tr ' ' ' ') ;\
-      apt clean ;\
+      apt update -qq ;\
+      apt full-upgrade -qq ;\
+      apt install -qq -y           $(echo "${apt_user_packages} ${apt_requ_packages} ${apt_addi_packages}"|tr ' ' ' ') ;\
+      apt install -qq -y -t xenial $(echo "${apt_xenial_packages}"|tr ' ' ' ') ;\
+      apt clean -qq ;\
       rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* ;\
       mkdir -p /opt/bin||true ;\
       ln -s /usr/bin/python3 /opt/bin/python ;\
@@ -38,7 +38,7 @@ RUN   mkdir -p /opt/bin||true ;\
       
 # User
 
-RUN   useradd anbuilder -md /android-build/ ;\
+RUN   useradd anbuilder -md /android-build ;\
       echo    'anbuilder ALL=NOPASSWD: ALL' >> /etc/sudoers ;\
       echo    'anbuilder:tin' > /android-build/password-info ;\
       chpasswd < /android-build/password-info

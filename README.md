@@ -6,3 +6,9 @@
 ### link
 Docker hub:  [koumaza/android_rom](https://hub.docker.com/r/koumaza/android_rom)<br>
 Source code: [github](https://github.com/koumaza/docker-android_rom)
+### Sample
+Launch command
+
+```python
+mkdir -p ~/android; podman run -v $HOME/android/:/android-build/android --rm -it koumaza/android_rom
+```

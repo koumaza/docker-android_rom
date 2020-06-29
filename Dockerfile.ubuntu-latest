@@ -48,9 +48,9 @@ RUN   useradd anbuilder -md /android-build &&\
 USER    anbuilder
 WORKDIR /android-build
 ## Copy document
-COPY    document/ /android-build/
+ADD    document/ /android-build/
 ## Copy dot files
-COPY    script/*  /android-build/
+ADD    script/*  /android-build/
 RUN     mkdir /android-build/tunnel/
 VOLUME  ["/android-build/tunnel/"]
 CMD     ["fish","--login"]

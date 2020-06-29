@@ -40,7 +40,8 @@ RUN   useradd anbuilder -md /android-build &&\
       echo    'anbuilder ALL=NOPASSWD: ALL' >> /etc/sudoers &&\
       echo    'anbuilder:tin' > /android-build/password-info &&\
       chpasswd < /android-build/password-info &&\
-      echo -e \n'The root user password has not been set yet'\n'Use "sudo" command to set it' >> /android-build/password-info
+      echo -e \n'The root user password has not been set yet'\n'Use "sudo" command to set it' >> /android-build/password-info &&\
+      echo -e \n'Set disable_coredump false' >> /etc/sudo.conf
       
 # Login
 

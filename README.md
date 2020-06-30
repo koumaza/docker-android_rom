@@ -10,5 +10,5 @@ Source code: [github](https://github.com/koumaza/docker-android_rom)
 Launch command
 
 ```python
-mkdir -p ~/android; podman run -v $HOME/android/:/android-build/android --rm -it koumaza/android_rom
+mkdir -p ~/android/.ccache; podman run -v $HOME/android/:/android-build/android --name adchan -it koumaza/android_rom
 ```

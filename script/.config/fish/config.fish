@@ -10,4 +10,20 @@ function ssh-automate
         eval (ssh-agent -c)
         ssh-add ~/.ssh/id_ed25519
 end
+function setupgit
+        while true
+                read name -p "echo -e 'Your Name: |> '"
+                git config --global user.name "$name"
+                if test $status = 0
+                        break
+                end
+        end
+        while true
+                read email -p "echo -e 'Email Address: |> '"
+                git config --global user.email "$email"
+                if test $status = 0
+                        break
+                end
+        end
+end
 sudo chown -R anbuilder:anbuilder ~/android/
